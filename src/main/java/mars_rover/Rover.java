@@ -28,25 +28,21 @@ public class Rover {
   }
 
   private void displaceRover(String command) {
-    int displacement1 = -1;
+    int displacement = command.equals("f") ? 1 : -1;
 
-    if (command.equals("f")) {
-      displacement1 = 1;
-    }
-    int displacement = displacement1;
-
-    if (direction.equals("N")) {
+      if (direction.equals("N")) {
       this.coordinates = this.coordinates.displaceInYDirection(displacement);
     } else if (direction.equals("S")) {
       this.coordinates = this.coordinates.displaceInYDirection(-displacement);
     } else if (direction.equals("W")) {
-      this.coordinates.setX(this.coordinates.getX() - displacement);
+      this.coordinates = coordinates.displaceInXDirection(-displacement);
     } else {
-      this.coordinates.setX(this.coordinates.getX() + displacement);
+        this.coordinates = coordinates.displaceInXDirection(displacement);
+
     }
   }
 
-  private void rotateRover(String command) {
+    private void rotateRover(String command) {
     if (direction.equals("N")) {
       if (command.equals("r")) {
         direction = "E";
