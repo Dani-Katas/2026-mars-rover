@@ -25,4 +25,8 @@ public class Coordinates {
     public int getY() {
         return y;
     }
+
+  Coordinates displaceInYDirection(int foo) {
+    return new Coordinates(getX(), getY() + foo);
+  }
 }
