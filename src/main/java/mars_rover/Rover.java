@@ -4,14 +4,10 @@ public class Rover {
 
   private final Coordinates coordinates;
     private String direction;
-    private int y;
-    private int x;
 
     public Rover(int x, int y, String direction) {
         this.direction = direction;
         this.coordinates = new Coordinates(x, y);
-        this.setY(y);
-        this.setX(x);
     }
 
     public void receive(String commandsSequence) {
@@ -39,13 +35,13 @@ public class Rover {
     int displacement = displacement1;
 
     if (direction.equals("N")) {
-        setY(getY() + displacement);
+        this.coordinates.setY(this.coordinates.getY() + displacement);
     } else if (direction.equals("S")) {
-        setY(getY() - displacement);
+        this.coordinates.setY(this.coordinates.getY() - displacement);
     } else if (direction.equals("W")) {
-        setX(getX() - displacement);
+        this.coordinates.setX(this.coordinates.getX() - displacement);
     } else {
-        setX(getX() + displacement);
+        this.coordinates.setX(this.coordinates.getX() + displacement);
     }
   }
 
@@ -84,8 +80,8 @@ public class Rover {
 
         Rover rover = (Rover) o;
 
-        if (getY() != rover.getY()) return false;
-        if (getX() != rover.getX()) return false;
+      if (this.coordinates.getY() != rover.coordinates.getY()) return false;
+      if (this.coordinates.getX() != rover.coordinates.getX()) return false;
         return direction != null ? direction.equals(rover.direction) : rover.direction == null;
 
     }
@@ -93,8 +89,8 @@ public class Rover {
     @Override
     public int hashCode() {
         int result = direction != null ? direction.hashCode() : 0;
-        result = 31 * result + getY();
-        result = 31 * result + getX();
+        result = 31 * result + this.coordinates.getY();
+        result = 31 * result + this.coordinates.getX();
         return result;
     }
 
@@ -102,24 +98,9 @@ public class Rover {
     public String toString() {
         return "Rover{" +
             "direction='" + direction + '\'' +
-            ", y=" + getY() +
-            ", x=" + getX() +
+            ", y=" + this.coordinates.getY() +
+            ", x=" + this.coordinates.getX() +
             '}';
     }
 
-    public int getY() {
-        return this.coordinates.getY();
-    }
-
-    public void setY(int y) {
-        this.coordinates.setY(y);
-    }
-
-    public int getX() {
-        return this.coordinates.getX();
-    }
-
-    public void setX(int x) {
-        this.coordinates.setX(x);
-    }
 }
