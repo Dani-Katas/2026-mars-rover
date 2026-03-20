@@ -4,12 +4,22 @@
     <remote-repository>
       <option name="id" value="inditex-artifacts" />
       <option name="name" value="inditex-artifacts" />
+      <option name="url" value="https://inditex.jfrog.io/artifactory/maven-public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="inditex-artifacts" />
+      <option name="name" value="inditex-artifacts" />
       <option name="url" value="https://inditex.jfrog.io/inditex/maven-public" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://inditex.jfrog.io/inditex/maven-public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://inditex.jfrog.io/artifactory/maven-public" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
