@@ -2,7 +2,8 @@ package mars_rover;
 
 public class Rover {
 
-    private String direction;
+  private final Coordinates coordinates;
+  private String direction;
     private int y;
     private int x;
 
@@ -10,6 +11,7 @@ public class Rover {
         this.direction = direction;
         this.y = y;
         this.x = x;
+        this.coordinates = new Coordinates(x, y);
     }
 
     public void receive(String commandsSequence) {
