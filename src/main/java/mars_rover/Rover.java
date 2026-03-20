@@ -3,15 +3,15 @@ package mars_rover;
 public class Rover {
 
   private final Coordinates coordinates;
-  private String direction;
+    private String direction;
     private int y;
     private int x;
 
     public Rover(int x, int y, String direction) {
         this.direction = direction;
-        this.y = y;
-        this.x = x;
         this.coordinates = new Coordinates(x, y);
+        this.setY(y);
+        this.setX(x);
     }
 
     public void receive(String commandsSequence) {
@@ -39,13 +39,13 @@ public class Rover {
     int displacement = displacement1;
 
     if (direction.equals("N")) {
-        y += displacement;
+        setY(getY() + displacement);
     } else if (direction.equals("S")) {
-        y -= displacement;
+        setY(getY() - displacement);
     } else if (direction.equals("W")) {
-        x -= displacement;
+        setX(getX() - displacement);
     } else {
-        x += displacement;
+        setX(getX() + displacement);
     }
   }
 
@@ -84,8 +84,8 @@ public class Rover {
 
         Rover rover = (Rover) o;
 
-        if (y != rover.y) return false;
-        if (x != rover.x) return false;
+        if (getY() != rover.getY()) return false;
+        if (getX() != rover.getX()) return false;
         return direction != null ? direction.equals(rover.direction) : rover.direction == null;
 
     }
@@ -93,8 +93,8 @@ public class Rover {
     @Override
     public int hashCode() {
         int result = direction != null ? direction.hashCode() : 0;
-        result = 31 * result + y;
-        result = 31 * result + x;
+        result = 31 * result + getY();
+        result = 31 * result + getX();
         return result;
     }
 
@@ -102,8 +102,24 @@ public class Rover {
     public String toString() {
         return "Rover{" +
             "direction='" + direction + '\'' +
-            ", y=" + y +
-            ", x=" + x +
+            ", y=" + getY() +
+            ", x=" + getX() +
             '}';
+    }
+
+    public int getY() {
+        return this.coordinates.getY();
+    }
+
+    public void setY(int y) {
+        this.coordinates.setY(y);
+    }
+
+    public int getX() {
+        return this.coordinates.getX();
+    }
+
+    public void setX(int x) {
+        this.coordinates.setX(x);
     }
 }
