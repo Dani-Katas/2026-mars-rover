@@ -1,15 +1,9 @@
 package mars_rover;
 
+import java.util.Objects;
+
 public class Coordinates {
     private int x;
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
 
     private int y;
 
@@ -18,19 +12,31 @@ public class Coordinates {
         this.y = y;
     }
 
-    public int getX() {
-        return x;
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordinates that = (Coordinates) o;
+        return x == that.x && y == that.y;
     }
 
-    public int getY() {
-        return y;
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
   Coordinates displaceInYDirection(int foo) {
-    return new Coordinates(getX(), getY() + foo);
+      return new Coordinates(x, y + foo);
   }
 
     Coordinates displaceInXDirection(int foo) {
-        return new Coordinates(getX() + foo, getY());
+        return new Coordinates(x + foo, y);
     }
 }

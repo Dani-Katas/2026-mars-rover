@@ -1,5 +1,7 @@
 package mars_rover;
 
+import java.util.Objects;
+
 public class Rover {
 
   private Coordinates coordinates;
@@ -70,42 +72,23 @@ public class Rover {
     }
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Rover rover = (Rover) o;
+        return Objects.equals(coordinates, rover.coordinates) && Objects.equals(direction, rover.direction);
     }
 
-    Rover rover = (Rover) o;
-
-    if (this.coordinates.getY() != rover.coordinates.getY()) {
-      return false;
+    @Override
+    public int hashCode() {
+        return Objects.hash(coordinates, direction);
     }
-    if (this.coordinates.getX() != rover.coordinates.getX()) {
-      return false;
+
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "coordinates=" + coordinates +
+                ", direction='" + direction + '\'' +
+                '}';
     }
-    return direction != null ? direction.equals(rover.direction) : rover.direction == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = direction != null ? direction.hashCode() : 0;
-    result = 31 * result + this.coordinates.getY();
-    result = 31 * result + this.coordinates.getX();
-    return result;
-  }
-
-  @Override
-  public String toString() {
-    return "Rover{" +
-        "direction='" + direction + '\'' +
-        ", y=" + this.coordinates.getY() +
-        ", x=" + this.coordinates.getX() +
-        '}';
-  }
-
 }
