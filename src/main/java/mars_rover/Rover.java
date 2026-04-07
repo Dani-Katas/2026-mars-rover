@@ -44,32 +44,9 @@ public class Rover {
     }
   }
 
-    private void rotateRover(String command) {
-    if (direction.equals(Direction.N)) {
-      if (command.equals("r")) {
-        direction = Direction.E;
-      } else {
-        direction = Direction.W;
-      }
-    } else if (direction.equals(Direction.S)) {
-      if (command.equals("r")) {
-        direction = Direction.W;
-      } else {
-        direction = Direction.E;
-      }
-    } else if (direction.equals(Direction.W)) {
-      if (command.equals("r")) {
-        direction = Direction.N;
-      } else {
-        direction = Direction.S;
-      }
-    } else {
-      if (command.equals("r")) {
-        direction = Direction.S;
-      } else {
-        direction = Direction.N;
-      }
-    }
+  private void rotateRover(String command) {
+    if (command.equals("r")) direction = direction.rotateRight();
+    else direction = direction.rotateLeft();
   }
 
     @Override
