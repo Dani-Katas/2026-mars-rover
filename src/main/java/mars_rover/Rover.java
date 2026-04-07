@@ -6,12 +6,9 @@ public class Rover {
 
   private Coordinates coordinates;
 
-  private String direction;
-
   private Direction direction2;
 
   public Rover(int x, int y, String direction) {
-    this.direction = direction;
     this.direction2 = Direction.valueOf(direction);
     this.coordinates = new Coordinates(x, y);
   }
@@ -35,11 +32,11 @@ public class Rover {
   private void displaceRover(String command) {
     int displacement = command.equals("f") ? 1 : -1;
 
-      if (direction.equals("N") || direction2.equals(Direction.N)) {
+      if (direction2.equals(Direction.N)) {
       this.coordinates = this.coordinates.displaceInYDirection(displacement);
-    } else if (direction.equals("S") || direction2.equals(Direction.S)) {
+    } else if (direction2.equals(Direction.S)) {
       this.coordinates = this.coordinates.displaceInYDirection(-displacement);
-    } else if (direction.equals("W") || direction2.equals(Direction.W)) {
+    } else if (direction2.equals(Direction.W)) {
       this.coordinates = coordinates.displaceInXDirection(-displacement);
     } else {
         this.coordinates = coordinates.displaceInXDirection(displacement);
@@ -48,36 +45,28 @@ public class Rover {
   }
 
     private void rotateRover(String command) {
-    if (direction.equals("N") || direction2.equals(Direction.N)) {
+    if (direction2.equals(Direction.N)) {
       if (command.equals("r")) {
-        direction = "E";
         direction2 = Direction.E;
       } else {
-        direction = "W";
         direction2 = Direction.W;
       }
-    } else if (direction.equals("S") || direction2.equals(Direction.S)) {
+    } else if (direction2.equals(Direction.S)) {
       if (command.equals("r")) {
-        direction = "W";
         direction2 = Direction.W;
       } else {
-        direction = "E";
         direction2 = Direction.E;
       }
-    } else if (direction.equals("W") || direction2.equals(Direction.W)) {
+    } else if (direction2.equals(Direction.W)) {
       if (command.equals("r")) {
-        direction = "N";
         direction2 = Direction.N;
       } else {
-        direction = "S";
         direction2 = Direction.S;
       }
     } else {
       if (command.equals("r")) {
-        direction = "S";
         direction2 = Direction.S;
       } else {
-        direction = "N";
         direction2 = Direction.N;
       }
     }
@@ -87,19 +76,19 @@ public class Rover {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Rover rover = (Rover) o;
-        return Objects.equals(coordinates, rover.coordinates) && Objects.equals(direction, rover.direction);
+        return Objects.equals(coordinates, rover.coordinates) && Objects.equals(direction2, rover.direction2);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coordinates, direction);
+        return Objects.hash(coordinates, direction2);
     }
 
     @Override
     public String toString() {
         return "Rover{" +
                 "coordinates=" + coordinates +
-                ", direction='" + direction + '\'' +
+                ", direction='" + direction2 + '\'' +
                 '}';
     }
 }
