@@ -1,10 +1,10 @@
 package mars_rover;
 
 public enum Direction {
-    NORTH("N"),
-    SOUTH("S"),
-    EAST("E"),
-    WEST ("W");
+    N("N"),
+    S("S"),
+    E("E"),
+    W ("W");
 
     private final String shortAlias;
 
