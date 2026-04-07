@@ -32,11 +32,11 @@ public class Coordinates {
         return Objects.hash(x, y);
     }
 
-  Coordinates displaceInYDirection(int foo) {
-      return new Coordinates(x, y + foo);
+  Coordinates displaceInYDirection(int displacement) {
+      return new Coordinates(x, y + displacement);
   }
 
-    Coordinates displaceInXDirection(int foo) {
-        return new Coordinates(x + foo, y);
+    Coordinates displaceInXDirection(int displacement) {
+        return new Coordinates(x + displacement, y);
     }
 }
