@@ -28,37 +28,8 @@ public class Rover {
     if (command.isRotation()) {
       direction = command.rotate(direction);
     } else {
-      this.coordinates = displaceRover2(command, direction, this.coordinates);
+      coordinates = command.displaceIn(direction, coordinates);
     }
-  }
-
-  private Coordinates displaceRover2(Command command, Direction direction, Coordinates coordinates) {
-    if(command.equals(Command.FORWARD)) {
-      int displacement;
-      if (direction.isPositiveAxis()) {
-        displacement = 1;
-      } else {
-        displacement = -1;
-      }
-      if (direction.isVertical()) {
-        return coordinates.displaceInYDirection(displacement);
-      } else {
-        return coordinates.displaceInXDirection(displacement);
-      }
-    } else {
-      int displacement;
-      if (direction.isPositiveAxis()) {
-        displacement = -1;
-      } else {
-        displacement = 1;
-      }
-      if (direction.isVertical()) {
-        return coordinates.displaceInYDirection(displacement);
-      } else {
-        return coordinates.displaceInXDirection(displacement);
-      }
-    }
-
   }
 
   @Override

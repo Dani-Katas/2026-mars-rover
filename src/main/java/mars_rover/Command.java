@@ -29,4 +29,33 @@ public enum Command {
     Direction rotate(Direction direction) {
       return equals(RIGHT) ? direction.rotateRight() : direction.rotateLeft();
     }
+
+    Coordinates displaceIn(Direction direction, Coordinates coordinates) {
+      if(equals(FORWARD)) {
+        int displacement;
+        if (direction.isPositiveAxis()) {
+          displacement = 1;
+        } else {
+          displacement = -1;
+        }
+        if (direction.isVertical()) {
+          return coordinates.displaceInYDirection(displacement);
+        } else {
+          return coordinates.displaceInXDirection(displacement);
+        }
+      } else {
+        int displacement;
+        if (direction.isPositiveAxis()) {
+          displacement = -1;
+        } else {
+          displacement = 1;
+        }
+        if (direction.isVertical()) {
+          return coordinates.displaceInYDirection(displacement);
+        } else {
+          return coordinates.displaceInXDirection(displacement);
+        }
+      }
+
+    }
 }
