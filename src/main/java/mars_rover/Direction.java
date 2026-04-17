@@ -53,6 +53,23 @@ public enum Direction {
         }
     };
 
+    int getDisplacement(Command command) {
+
+        if (isPositiveAxis()) {
+        return command.equals(Command.FORWARD) ? 1 : -1;
+      } else {
+        return command.equals(Command.FORWARD) ? -1 : 1;
+      }
+    }
+
+    boolean isPositiveAxis() {
+      return equals(N) || equals(E);
+    }
+
     abstract public Direction rotateRight();
     abstract public Direction rotateLeft();
+
+    boolean isVertical() {
+      return equals(N) || equals(S);
+    }
 }

@@ -5,8 +5,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static java.util.function.Predicate.not;
-
 public class Rover {
 
   private Coordinates coordinates;
@@ -28,32 +26,21 @@ public class Rover {
 
   private void process(Command command) {
     if (command.isRotation()) {
-      rotateRover(command);
+      direction = command.rotate(direction);
     } else {
-      displaceRover(command);
+      this.coordinates = displaceRover2(command, direction, this.coordinates);
     }
   }
 
-  private void displaceRover(Command command) {
-    int displacement = command.equals(Command.FORWARD) ? 1 : -1;
-
-      if (direction.equals(Direction.N)) {
-      this.coordinates = this.coordinates.displaceInYDirection(displacement);
-    } else if (direction.equals(Direction.S)) {
-      this.coordinates = this.coordinates.displaceInYDirection(-displacement);
-    } else if (direction.equals(Direction.W)) {
-      this.coordinates = coordinates.displaceInXDirection(-displacement);
+  private Coordinates displaceRover2(Command command, Direction direction, Coordinates coordinates) {
+    if (direction.isVertical()) {
+      return coordinates.displaceInYDirection(direction.getDisplacement(command));
     } else {
-        this.coordinates = coordinates.displaceInXDirection(displacement);
-
+      return coordinates.displaceInXDirection(direction.getDisplacement(command));
     }
   }
 
-  private void rotateRover(Command command) {
-      direction = command.equals(Command.RIGHT) ? direction.rotateRight() : direction.rotateLeft();
-  }
-
-    @Override
+  @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Rover rover = (Rover) o;

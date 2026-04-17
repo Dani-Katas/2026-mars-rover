@@ -25,4 +25,8 @@ public enum Command {
     boolean isRotation() {
       return equals(LEFT) || equals(RIGHT);
     }
+
+    Direction rotate(Direction direction) {
+      return equals(RIGHT) ? direction.rotateRight() : direction.rotateLeft();
+    }
 }
