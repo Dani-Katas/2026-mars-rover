@@ -1,10 +1,8 @@
 package mars_rover;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static java.util.function.Predicate.not;
@@ -24,20 +22,20 @@ public class Rover {
       parse(commandsSequence).forEach(this::process);
   }
 
-  private static Stream<String> parse(String commandsSequence) {
-    return Arrays.stream(commandsSequence.split("")).filter(not(String::isEmpty));
+  private static Stream<Command> parse(String commandsSequence) {
+    return Arrays.stream(commandsSequence.split("")).map(Command::parse).flatMap(Optional::stream);
   }
 
-  private void process(String command) {
-    if (command.equals("l") || command.equals("r")) {
+  private void process(Command command) {
+    if (command.isRotation()) {
       rotateRover(command);
     } else {
       displaceRover(command);
     }
   }
 
-  private void displaceRover(String command) {
-    int displacement = command.equals("f") ? 1 : -1;
+  private void displaceRover(Command command) {
+    int displacement = command.equals(Command.FORWARD) ? 1 : -1;
 
       if (direction.equals(Direction.N)) {
       this.coordinates = this.coordinates.displaceInYDirection(displacement);
@@ -51,9 +49,8 @@ public class Rover {
     }
   }
 
-  private void rotateRover(String command) {
-    if (command.equals("r")) direction = direction.rotateRight();
-    else direction = direction.rotateLeft();
+  private void rotateRover(Command command) {
+      direction = command.equals(Command.RIGHT) ? direction.rotateRight() : direction.rotateLeft();
   }
 
     @Override
