@@ -33,11 +33,32 @@ public class Rover {
   }
 
   private Coordinates displaceRover2(Command command, Direction direction, Coordinates coordinates) {
-    if (direction.isVertical()) {
-      return coordinates.displaceInYDirection(direction.getDisplacement(command));
+    if(command.equals(Command.FORWARD)) {
+      int displacement;
+      if (direction.isPositiveAxis()) {
+        displacement = 1;
+      } else {
+        displacement = -1;
+      }
+      if (direction.isVertical()) {
+        return coordinates.displaceInYDirection(displacement);
+      } else {
+        return coordinates.displaceInXDirection(displacement);
+      }
     } else {
-      return coordinates.displaceInXDirection(direction.getDisplacement(command));
+      int displacement;
+      if (direction.isPositiveAxis()) {
+        displacement = -1;
+      } else {
+        displacement = 1;
+      }
+      if (direction.isVertical()) {
+        return coordinates.displaceInYDirection(displacement);
+      } else {
+        return coordinates.displaceInXDirection(displacement);
+      }
     }
+
   }
 
   @Override
