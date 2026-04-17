@@ -1,6 +1,13 @@
 package mars_rover;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.function.Predicate.not;
 
 public class Rover {
 
@@ -14,11 +21,11 @@ public class Rover {
   }
 
   public void receive(String commandsSequence) {
-    for (int i = 0; i < commandsSequence.length(); ++i) {
-      String command = commandsSequence.substring(i, i + 1);
+      parse(commandsSequence).forEach(this::process);
+  }
 
-      process(command);
-    }
+  private static Stream<String> parse(String commandsSequence) {
+    return Arrays.stream(commandsSequence.split("")).filter(not(String::isEmpty));
   }
 
   private void process(String command) {
